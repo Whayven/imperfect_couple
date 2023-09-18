@@ -2,20 +2,20 @@ import React, {createContext, useState, useContext, useEffect} from 'react';
 import {userService} from "../services/userService";
 import {useAuth} from "./Auth";
 
-import {User} from "../domain/user";
+import {UserData} from "../domain/userData";
 import {handleError} from "../utils";
 
 type UserContextData = {
-    userData?: User;
+    userData?: UserData;
     loading: boolean;
     getUserData(token: string): Promise<void>;
-    updateUserData(formData: User, token: string): Promise<void>;
+    updateUserData(formData: UserData, token: string): Promise<void>;
 };
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
 
 const UserProvider = ({children}) => {
-    const [userData, setUserData] = useState<User>();
+    const [userData, setUserData] = useState<UserData>();
 
     const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ const UserProvider = ({children}) => {
         setUserData(_userData);
     }
 
-    const updateUserData = async (formData: User, token: string) => {
+    const updateUserData = async (formData: UserData, token: string) => {
         await userService.updateUser(formData.id, formData, token).then((res) => {
             setUserData(res);
         }).catch((error) => {

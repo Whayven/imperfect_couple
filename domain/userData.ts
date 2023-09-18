@@ -1,4 +1,4 @@
-export type User = {
+export type UserData = {
     id: number;
     username: string;
     email: string;
@@ -6,5 +6,6 @@ export type User = {
     phone: string | null;
     city: string | null;
     state: string | null;
-    status: string;
+    status: string | null;
+    profile_picture: string | null;
 };

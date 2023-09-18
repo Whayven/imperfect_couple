@@ -3,7 +3,7 @@ import {ScrollView, Text, TextInput, TouchableOpacity, View} from "react-native"
 import {basic, form} from "../styles/common";
 import {Picker} from "@react-native-picker/picker";
 import {marriageStatus} from "../constants";
-import {User} from "../domain/user";
+import {UserData} from "../domain/userData";
 
 const EditProfile = ({user, updateUser, toggleForm, isEditMode, signOut}) => {
     const [id] = useState(user.id);
@@ -16,7 +16,7 @@ const EditProfile = ({user, updateUser, toggleForm, isEditMode, signOut}) => {
     const [status, setStatus] = useState(user.status);
 
     const handleSubmit = () : void => {
-        const formData: User = {
+        const formData: UserData = {
             id,
             username,
             name,
@@ -25,6 +25,7 @@ const EditProfile = ({user, updateUser, toggleForm, isEditMode, signOut}) => {
             state,
             phone,
             status,
+            profile_picture: user.profile_picture
         };
         // Update User Data
         updateUser(formData);

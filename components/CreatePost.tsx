@@ -3,12 +3,6 @@ import {Text, TextInput, TouchableOpacity} from "react-native";
 
 import {basic, form} from "../styles/common";
 
-import {useAuth} from "../contexts/Auth";
-import {useUser} from "../contexts/User";
-import {handleError} from "../utils";
-import {postService} from "../services/postService";
-import {Post} from "../domain/post";
-
 const CreatePost = ({createPost}) => {
     const [content, setContent] = useState('');
 

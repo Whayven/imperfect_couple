@@ -1,17 +1,25 @@
 import strapi from '../strapi';
-import { Post } from "../domain/post";
+import { PostData } from "../domain/postData";
+import { User } from "../models/User";
 
-const getPosts = async (token: string): Promise<Post[]> => {
+
+
+const getPosts = async (token: string): Promise<PostData[]> => {
     return await strapi.get('/posts?populate[posted_by][populate][0]=profile_picture', {headers: {Authorization: `Bearer ${token}`}})
         .then((response) => {
             const data = response.data.data;
-            console.log(`getPosts: ${JSON.stringify(data)}`)
+            // console.log(`getPosts: ${JSON.stringify(data)}`)
             return data.map((post: any) => {
+                const postedBy = new User({
+                    id: post.attributes.posted_by.data.id,
+                    username: post.attributes.posted_by.data.attributes.username,
+                    profile_picture: post.attributes.posted_by?.data?.attributes.profile_picture?.data?.attributes?.formats?.small?.url,
+                })
                 return {
                     id: post.id,
-                    posted_by: post.attributes.posted_by,
+                    posted_by: postedBy,
                     content: post.attributes.content,
-                    created_at: post.attributes.created_at,
+                    created_at: post.attributes.createdAt,
                 };
             });
         })
@@ -20,20 +28,25 @@ const getPosts = async (token: string): Promise<Post[]> => {
         });
 }
 
-const createPost = async (formData: Post, token:string): Promise<Post> => {
+const createPost = async (formData: PostData, token:string): Promise<PostData> => {
     const data = {
         ...formData
     }
-    console.log(`createPost data: ${JSON.stringify(data)}`)
+    // console.log(`createPost data: ${JSON.stringify(data)}`)
     return await strapi.post('/posts?populate[posted_by][populate][0]=profile_picture', {data}, {headers: {Authorization: `Bearer ${token}`}})
         .then((response) => {
-            console.log(`createPost response: ${JSON.stringify(response.data)}`)
+            // console.log(`createPost response: ${JSON.stringify(response.data)}`)
             const data = response.data.data;
+            const postedBy = new User({
+                id: data.attributes.posted_by.data.id,
+                username: data.attributes.posted_by.data.attributes.username,
+                profile_picture: data.attributes.posted_by?.data?.attributes.profile_picture?.data?.attributes?.formats?.small?.url,
+            })
             return {
                 id: data.id,
-                posted_by: data.attributes.posted_by,
+                posted_by: postedBy,
                 content: data.attributes.content,
-                created_at: data.attributes.created_at,
+                created_at: data.attributes.createdAt,
             }
         })
         .catch((error) => {

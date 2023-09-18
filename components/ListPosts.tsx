@@ -1,11 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, FlatList} from 'react-native';
-import {basic} from '../styles/common';
-
-import {useAuth} from "../contexts/Auth";
-import {handleError} from "../utils";
-import {postService} from "../services/postService";
-import {Post} from "../domain/post";
+import React from 'react';
+import {FlatList} from 'react-native';
 import PostItem from "./PostItem";
 
 const ListPosts = ({posts}) => {

@@ -11,12 +11,13 @@ import {useIsMount} from "../utils";
 
 import {basic, form} from '../styles/common';
 
-import {AVATAR_API} from "../constants";
-import {User} from "../domain/user"
+import {API_URL, AVATAR_API} from "../constants";
+import {UserData} from "../domain/userData"
 
 const ProfileScreen = () => {
     const [isEditMode, setIsEditMode] = useState(false);
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<UserData>();
+    const avatar = `${API_URL}${user?.profile_picture}` || `${AVATAR_API}/${user.username}`;
 
 
     const auth = useAuth();
@@ -28,7 +29,7 @@ const ProfileScreen = () => {
         auth.signOut();
     }
 
-    const handleUserUpdate = (user: User) => {
+    const handleUserUpdate = (user: UserData) => {
         setUser(user);
     }
 
@@ -54,7 +55,8 @@ const ProfileScreen = () => {
 
     return (
         <View style={isEditMode ? form.formContainer : basic.container}>
-            <Image source={{uri: `${AVATAR_API}/WF`}} style={{width: 100, height: 100, borderRadius: 100, margin: 20}}/>
+            <Image source={{uri: avatar}}
+                   style={{width: 100, height: 100, borderRadius: 100, margin: 20, resizeMode: 'contain'}}/>
             {isEditMode ? <EditProfile user={user} updateUser={handleUserUpdate} toggleForm={setIsEditMode}
                                        isEditMode={isEditMode} signOut={handleSignOut}/> :
                 <Profile user={user} toggleForm={setIsEditMode} isEditMode={isEditMode} signOut={handleSignOut}/>}

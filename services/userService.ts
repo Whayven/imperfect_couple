@@ -1,8 +1,8 @@
 import strapi from '../strapi';
-import {User} from "../domain/user";
+import {UserData} from "../domain/userData";
 
-const getUser = async (token: string): Promise<User> => {
-    return await strapi.get('/users/me', {headers: {Authorization: `Bearer ${token}`}})
+const getUser = async (token: string): Promise<UserData> => {
+    return await strapi.get('/users/me?populate=*', {headers: {Authorization: `Bearer ${token}`}})
         .then((response) => {
             const data = response.data;
             console.log(`getUser: ${JSON.stringify(data)}`)
@@ -15,6 +15,7 @@ const getUser = async (token: string): Promise<User> => {
                 city: data.city,
                 state: data.state,
                 status: data.status,
+                profile_picture: data.profile_picture.formats.small.url
             };
         })
         .catch((error) => {
@@ -22,7 +23,7 @@ const getUser = async (token: string): Promise<User> => {
         });
 }
 
-const updateUser = async (id: number, formData: User, token:string): Promise<User> => {
+const updateUser = async (id: number, formData: UserData, token:string): Promise<UserData> => {
     return await strapi.put(`/users/${id}`, formData, {headers: {Authorization: `Bearer ${token}`}})
         .then((response) => {
             const data = response.data;
@@ -35,6 +36,7 @@ const updateUser = async (id: number, formData: User, token:string): Promise<Use
                 city: data.city,
                 state: data.state,
                 status: data.status,
+                profile_picture: null
             }
         })
         .catch((error) => {
