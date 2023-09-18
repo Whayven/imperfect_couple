@@ -1,8 +1,9 @@
 // strapi.js
 import axios from 'axios';
+import {API_URL} from "./constants";
 
 const strapi = axios.create({
-    baseURL: 'https://337a-99-76-171-10.ngrok.io/api'
+    baseURL: `${API_URL}/api`
 });
 
 export default strapi;
