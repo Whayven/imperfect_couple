@@ -49,6 +49,66 @@ export const basic = StyleSheet.create({
     },
 });
 
+export const post = StyleSheet.create({
+    postContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        width: '100%',
+        backgroundColor: '#1a1a1a', // Grey background
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 10,
+        marginBottom: 20,
+        padding: 10
+    },
+    postText: {
+        fontSize: 20,
+        color: '#FFD700', // Gold color
+        paddingHorizontal: 10,
+    },
+    postImage: {
+        width: 50,
+        height: 50,
+        resizeMode: 'contain',
+        paddingHorizontal: 10,
+        borderRadius: 50
+    },
+    postButton: {
+        backgroundColor: '#FFD700',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        marginBottom: 20,
+    },
+    postButtonText: {
+        color: 'black',
+        fontSize: 16,
+        textAlign: 'center',
+    },
+    postButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '80%',
+        paddingTop: 20,
+        marginHorizontal: 25
+
+    },
+    postContent: {
+        fontSize: 16,
+        color: '#FFD700', // Gold color
+        paddingBottom: 10,
+        paddingHorizontal: 10,
+    },
+    postDate: {
+        fontSize: 12,
+        color: 'grey',
+        paddingTop: 10,
+        paddingHorizontal: 10,
+    }
+});
+
 export const form = StyleSheet.create({
     formContainer: {
         flex: 1,
@@ -75,16 +135,19 @@ export const form = StyleSheet.create({
         alignSelf: 'stretch',
     },
     bigTextInput: {
-        height: 100,
+        height: 75,
         backgroundColor: '#1a1a1a',
         color: '#FFD700',
         borderColor: 'gray',
         borderWidth: 1,
         marginBottom: 20,
         paddingLeft: 10,
+        paddingTop: 10,
         width: '80%',
         borderRadius: 10,
-        marginHorizontal: 25
+        marginHorizontal: 25,
+        textAlignVertical: 'top'
+
     }
 });
 

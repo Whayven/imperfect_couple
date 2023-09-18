@@ -9,40 +9,25 @@ import {handleError} from "../utils";
 import {postService} from "../services/postService";
 import {Post} from "../domain/post";
 
-const CreatePost = () => {
+const CreatePost = ({createPost}) => {
     const [content, setContent] = useState('');
 
-    const auth = useAuth();
-    const user = useUser();
-
     const handleSubmit = () => {
-        const post : Post = {
-            id: undefined,
-            content: content,
-            posted_by: user.userData,
-            created_at: null,
-        }
-        // Send formData to the server here
-        postService.createPost(post, auth.authData?.token).then((response) => {
-            console.log(response)
-            setContent('')
-        }
-        ).catch((error) => {
-            handleError(error)
-        })
+        createPost(content);
+        setContent('');
     }
 
     return (
         <>
             <TextInput
                 style={form.bigTextInput}
-                placeholder="Share Your Thoughts"
+                placeholder="Share your thoughts..."
                 placeholderTextColor={'#FFD700'}
                 value={content}
                 onChangeText={(text) => setContent(text)}
             />
             <TouchableOpacity style={basic.button} onPress={handleSubmit}><Text
-                style={basic.buttonText}>Create</Text></TouchableOpacity>
+                style={basic.buttonText}>Share</Text></TouchableOpacity>
         </>
     );
 }
