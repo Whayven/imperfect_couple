@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_URL = "https://f884-99-76-171-10.ngrok.io/api";
+import strapi from '../strapi'
 
 export type AuthData = {
     token: string;
@@ -32,10 +30,12 @@ const signIn = async (email: string, _password: string): Promise<AuthData> => {
     //         });
     //     }, 1000);
     // });
-    return await axios.post(API_URL + '/auth/local', {identifier: email, password: _password})
+    return await strapi.post('/auth/local', {identifier: email, password: _password})
         .then((response) => {
             const data = response.data;
             return {token: data.jwt, email: data.user.email, name: data.user.username};
+        }).catch((error) => {
+            throw error;
         });
 
 };
@@ -54,15 +54,14 @@ const signUp = async (formData: RegisterData): Promise<AuthData> => {
     //         });
     //     }, 1000);
     // });
-    console.log(API_URL)
-    return await axios.post(API_URL + '/auth/local/register', formData)
+    return await strapi.post('/auth/local/register', formData)
         .then((response) => {
             const data = response.data;
             return {token: data.jwt, email: data.user.email, name: data.user.username};
         })
         .catch((error) => {
-        throw error;
-    });
+            throw error;
+        });
 
 }
 

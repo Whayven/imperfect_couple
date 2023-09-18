@@ -4,7 +4,8 @@ import {basic, form} from '../styles/common';
 import {Picker} from '@react-native-picker/picker';
 
 import {marriageStatus} from "../constants";
-import {authService} from "../services/authService";
+import {useAuth} from "../contexts/Auth";
+import {handleError} from "../utils";
 
 const SignupScreen = () => {
     const [step, setStep] = useState(1); // [1, 2]
@@ -17,25 +18,7 @@ const SignupScreen = () => {
     const [state, setState] = useState('');
     const [status, setStatus] = useState('Single');
 
-    const handleError = (error) => {
-        if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-        } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            console.log('Error request')
-            console.log(error.request);
-        } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message);
-        }
-        console.log(error.config);
-    }
+    const auth = useAuth();
 
     const handleSubmit = () => {
         const formData = {
@@ -48,9 +31,8 @@ const SignupScreen = () => {
             email,
             password,
         };
-        console.log('Form Data:', formData);
         // Send formData to the server here
-        authService.signUp(formData)
+        auth.signUp(formData)
             .catch((error) => {
             handleError(error);
             const errors = error.response.data.error.details.errors;

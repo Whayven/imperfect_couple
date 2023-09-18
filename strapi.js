@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const strapi = axios.create({
-    baseURL: process.env.API_URL || 'http://localhost:1337/api'
+    baseURL: 'https://337a-99-76-171-10.ngrok.io/api'
 });
 
 export default strapi;

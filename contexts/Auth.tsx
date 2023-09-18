@@ -2,6 +2,7 @@ import React, {createContext, useState, useContext, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import {AuthData, RegisterData, authService} from '../services/authService';
+import {handleError} from "../utils";
 
 type AuthContextData = {
     authData?: AuthData;
@@ -24,7 +25,7 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         //Every time the App is opened, this provider is rendered
         //and call de loadStorage function.
-        loadStorageData().then(() => console.log('loaded'));
+        loadStorageData().then(() => console.log('loaded auth data'));
     }, []);
 
     async function loadStorageData(): Promise<void> {
@@ -51,6 +52,7 @@ const AuthProvider = ({children}) => {
             email,
             password,
         ).catch((error) => {
+            handleError(error)
             const errors = error.response.data.error.details.errors;
             if (errors) {
                 for (let key in errors) {
@@ -73,12 +75,6 @@ const AuthProvider = ({children}) => {
 
     const signUp = async (formData: RegisterData) => {
         const _authData = await authService.signUp(formData).catch((error) => {
-            const errors = error.response.data.error.details.errors;
-            if (errors) {
-                for (let key in errors) {
-                    console.log(key, errors[key]);
-                }
-            }
             return null;
         });
         //Set the data in the context, so the App can be notified

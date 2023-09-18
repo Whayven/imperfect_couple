@@ -13,6 +13,17 @@ export const basic = StyleSheet.create({
         color: '#FFD700', // Gold color
         paddingBottom: 10,
     },
+    basicText: {
+        fontSize: 20,
+        color: '#FFD700', // Gold color
+        paddingBottom: 10,
+        paddingHorizontal: 10,
+    },
+    textContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+    },
     textInput: {
         height: 50,
         color: '#FFD700',
@@ -22,6 +33,7 @@ export const basic = StyleSheet.create({
         paddingLeft: 10,
         width: '80%',
         borderRadius: 10,
+        marginHorizontal: 25
     },
     button: {
         backgroundColor: '#FFD700',
@@ -57,7 +69,11 @@ export const form = StyleSheet.create({
         justifyContent: 'space-between',
         width: '80%',
         paddingTop: 20,
-    }
+        marginHorizontal: 25
+    },
+    scrollContainer: {
+        alignSelf: 'stretch',
+    },
 });
 
 export const sidebar = StyleSheet.create({
