@@ -74,6 +74,18 @@ export const form = StyleSheet.create({
     scrollContainer: {
         alignSelf: 'stretch',
     },
+    bigTextInput: {
+        height: 100,
+        backgroundColor: '#1a1a1a',
+        color: '#FFD700',
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 20,
+        paddingLeft: 10,
+        width: '80%',
+        borderRadius: 10,
+        marginHorizontal: 25
+    }
 });
 
 export const sidebar = StyleSheet.create({

@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import CreatePost from "../components/CreatePost";
 import {basic} from '../styles/common';
 
 // This is your Home Screen
@@ -7,7 +8,7 @@ import {basic} from '../styles/common';
 const HomeScreen = () => {
   return (
     <View style={basic.container}>
-      <Text style={basic.text}>Home Screen</Text>
+        <CreatePost />
     </View>
   );
 };
