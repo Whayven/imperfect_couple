@@ -32,7 +32,7 @@ const AuthProvider = ({children}) => {
         try {
             //Try to get the data from Async Storage
             const authDataSerialized = await AsyncStorage.getItem('@AuthData');
-            console.log(authDataSerialized)
+            // console.log(authDataSerialized)
             if (authDataSerialized) {
                 //If there are data, it's converted to an Object and the state is updated.
                 const _authData: AuthData = JSON.parse(authDataSerialized);
@@ -61,7 +61,7 @@ const AuthProvider = ({children}) => {
             }
             return null;
         });
-        console.log(_authData)
+        // console.log(_authData)
 
         //Set the data in the context, so the App can be notified
         //and send the user to the AuthStack

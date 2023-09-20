@@ -87,14 +87,6 @@ export const post = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
     },
-    postButtonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '80%',
-        paddingTop: 20,
-        marginHorizontal: 25
-
-    },
     postContent: {
         fontSize: 16,
         color: '#FFD700', // Gold color
@@ -106,6 +98,21 @@ export const post = StyleSheet.create({
         color: 'grey',
         paddingTop: 10,
         paddingHorizontal: 10,
+    },
+    postActions: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        marginLeft: 25
+    },
+    icon: {
+        width: 26,
+        height: 26,
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 50,
     }
 });
 

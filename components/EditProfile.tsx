@@ -14,6 +14,7 @@ const EditProfile = ({user, updateUser, toggleForm, isEditMode, signOut}) => {
     const [city, setCity] = useState(user.city);
     const [state, setState] = useState(user.state);
     const [status, setStatus] = useState(user.status);
+    const [profile_picture] = useState(user.profile_picture);
 
     const handleSubmit = () : void => {
         const formData: UserData = {
@@ -25,7 +26,7 @@ const EditProfile = ({user, updateUser, toggleForm, isEditMode, signOut}) => {
             state,
             phone,
             status,
-            profile_picture: user.profile_picture
+            profile_picture
         };
         // Update User Data
         updateUser(formData);

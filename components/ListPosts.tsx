@@ -2,14 +2,12 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import PostItem from "./PostItem";
 
-const ListPosts = ({posts}) => {
-
-
+const ListPosts = ({posts, deletePost, likePost}) => {
     return (
         <>
             <FlatList
                 data={posts}
-                renderItem={({item}) => <PostItem postData={item}/>}
+                renderItem={({item}) => <PostItem postData={item} deletePost={deletePost} likePost={likePost}/>}
                 keyExtractor={item => item.id.toString()}
                 style={{
                     width: '100%',

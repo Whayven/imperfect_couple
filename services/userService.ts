@@ -5,7 +5,7 @@ const getUser = async (token: string): Promise<UserData> => {
     return await strapi.get('/users/me?populate=*', {headers: {Authorization: `Bearer ${token}`}})
         .then((response) => {
             const data = response.data;
-            console.log(`getUser: ${JSON.stringify(data)}`)
+            // console.log(`getUser: ${JSON.stringify(data)}`)
             return {
                 id: data.id,
                 username: data.username,

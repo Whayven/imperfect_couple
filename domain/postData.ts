@@ -5,4 +5,5 @@ export type PostData = {
     posted_by: User | null;
     content: string;
     created_at: string | null;
+    liked_by: User[] | null;
 }
