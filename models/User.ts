@@ -5,11 +5,11 @@ export class User implements UserData {
     username: string | null;
     email: string | null;
     name: string | null;
-    phone: string | null;
-    city: string | null;
-    state: string | null;
+    phone?: string | null;
+    city?: string | null;
+    state?: string | null;
     status: string | null;
-    profile_picture: string | null;
+    profile_picture?: string | null;
 
     constructor(data?: Partial<UserData>) {
         this.id = data?.id || undefined;
@@ -20,6 +20,8 @@ export class User implements UserData {
         this.city = data?.city || null;
         this.state = data?.state || null;
         this.status = data?.status || null;
-        this.profile_picture = data?.profile_picture || null;
+        if (data?.profile_picture) {
+            this.profile_picture = data?.profile_picture;
+        }
     }
 }

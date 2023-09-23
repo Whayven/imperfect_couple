@@ -3,9 +3,9 @@ export type UserData = {
     username: string;
     email: string;
     name: string | null;
-    phone: string | null;
-    city: string | null;
-    state: string | null;
+    phone?: string | null;
+    city?: string | null;
+    state?: string | null;
     status: string | null;
-    profile_picture: string | null;
+    profile_picture?: string | null;
 };
