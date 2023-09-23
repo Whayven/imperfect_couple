@@ -4,6 +4,7 @@ export const basic = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 40,
+        paddingBottom: 20,
         alignItems: 'center',
         backgroundColor: '#1a1a1a', // Grey background
     },
@@ -44,16 +45,40 @@ export const basic = StyleSheet.create({
     },
     buttonText: {
         color: 'black',
+        fontWeight: 'bold',
         fontSize: 16,
         textAlign: 'center',
     },
 });
 
+export const profile = StyleSheet.create({
+    profileContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        paddingHorizontal: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#1a1a1a', // Grey background
+        borderRadius: 10,
+        borderColor: 'gray',
+        borderWidth: 1,
+    },
+    profileInfo: {
+        flex: 1,
+        paddingTop: 40,
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+        alignItems: 'center',
+        backgroundColor: '#1a1a1a', // Grey background
+    }
+});
+
 export const post = StyleSheet.create({
     postContainer: {
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         backgroundColor: '#1a1a1a', // Grey background
@@ -75,6 +100,12 @@ export const post = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 50
     },
+    postHeader: {
+        flexDirection: 'row',
+        width: '100%',
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+    },
     postButton: {
         backgroundColor: '#FFD700',
         paddingVertical: 10,
@@ -92,6 +123,7 @@ export const post = StyleSheet.create({
         color: '#FFD700', // Gold color
         paddingBottom: 10,
         paddingHorizontal: 10,
+        width: '100%',
     },
     postDate: {
         fontSize: 12,
@@ -101,19 +133,14 @@ export const post = StyleSheet.create({
     },
     postActions: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-        marginLeft: 25
+        justifyContent: 'space-evenly',
+        width: 80,
+
     },
     icon: {
         width: 26,
         height: 26,
     },
-    iconContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 50,
-    }
 });
 
 export const form = StyleSheet.create({
@@ -156,6 +183,54 @@ export const form = StyleSheet.create({
         textAlignVertical: 'top'
 
     }
+});
+
+export const modal = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    modalView: {
+        opacity: 0.9,
+        margin: 20,
+        width: '80%',
+        backgroundColor: '#1a1a1a',
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+        backgroundColor: 'gold',
+    },
+    textStyle: {
+        color: 'black',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+        color: 'gold',
+    },
 });
 
 export const sidebar = StyleSheet.create({

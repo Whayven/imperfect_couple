@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import CreatePost from "../components/CreatePost";
 import ListPosts from "../components/ListPosts";
@@ -8,17 +8,20 @@ import {useAuth} from "../contexts/Auth";
 import {postService} from "../services/postService";
 import {handleError} from "../utils";
 import {useUser} from "../contexts/User";
+import Message from "../components/Message";
 
 // This is your Home Screen
 // @ts-ignore
 const HomeScreen = () => {
-    const [posts, setPosts] = React.useState<PostData[]>([])
+    const [posts, setPosts] = React.useState<PostData[]>([]);
+    const [displayMessage, setDisplayMessage] = useState(false);
+    const [message, setMessage] = useState('');
 
     const auth = useAuth();
     const user = useUser();
 
     const createPost = async (content: string) => {
-        const post : PostData = {
+        const post: PostData = {
             id: undefined,
             content,
             posted_by: user.userData,
@@ -30,6 +33,8 @@ const HomeScreen = () => {
         await postService.createPost(post, auth.authData?.token).then((response) => {
                 // console.log(`Create Post Response: ${JSON.stringify(response)}`)
                 setPosts([response, ...posts])
+                setMessage('Post Created Successfully!')
+                setDisplayMessage(true);
             }
         ).catch((error) => {
             handleError(error)
@@ -40,6 +45,9 @@ const HomeScreen = () => {
         await postService.deletePost(id, auth.authData?.token).then((response) => {
             // console.log(`Delete Post Response: ${JSON.stringify(response)}`)
             setPosts(posts.filter((post) => post.id !== id))
+        }).then(() => {
+            setMessage('Post Deleted Successfully!')
+            setDisplayMessage(true);
         }).catch((error) => {
             console.log(`Delete Post Error: ${JSON.stringify(error)}`)
         })
@@ -81,13 +89,17 @@ const HomeScreen = () => {
         })
     }, [])
 
-  return (
-    <View style={basic.container}>
-        <CreatePost createPost={createPost} />
-        <View style={{height: 20}}></View>
-        <ListPosts posts={posts} deletePost={deletePost} likePost={likePost} />
-    </View>
-  );
+    return (
+        <View style={basic.container}>
+            {
+                displayMessage &&
+                <Message message={message} displayMessage={displayMessage} setDisplayMessage={setDisplayMessage}/>
+            }
+            <CreatePost createPost={createPost}/>
+            <View style={{height: 20}}></View>
+            <ListPosts posts={posts} deletePost={deletePost} likePost={likePost}/>
+        </View>
+    );
 };
 
 export default HomeScreen;

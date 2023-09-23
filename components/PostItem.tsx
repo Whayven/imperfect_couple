@@ -28,36 +28,34 @@ const PostItem = ({postData, deletePost, likePost}: {
 
     return (
         <View style={post.postContainer}>
-            <Image
-                style={post.postImage}
-                source={{uri: avatar}}
-            />
+            <View style={post.postHeader}>
+                <Image
+                    style={post.postImage}
+                    source={{uri: avatar}}
+                />
+            </View>
+
             <View style={post.postContent}>
-                <Text style={post.postText}>{postData.content}</Text>
-                <Text style={post.postDate}>{Moment(postData.created_at).format('MMM Do YYYY, h:mma')}</Text>
+                <Text
+                    style={post.postText}>{postData.content.length > 250 ? `${postData.content.substring(0, 249)}...` : postData.content}</Text>
+                <Text style={post.postDate}>{`${postData.posted_by.username} @ ${Moment(postData.created_at).format('MMM Do YYYY')}`}</Text>
             </View>
             <View style={post.postActions}>
-                <View style={post.iconContainer}>
-                    {
-                        user.userData?.id === postData.posted_by.id ?
-                            <Icon type={'font-awesome'} name={'trash'} color={'grey'} style={post.icon} onPress={() => {
-                                handleDelete(postData.id)
-                            }}/> :
-                            <View style={post.icon}></View>
-                    }
-                </View>
-                <View style={post.iconContainer}>
-                    {
-                        postData.liked_by && postData.liked_by.find((user) => user.id === user.id) ?
-                            <Icon type={'font-awesome'} name={'heart'} color={'red'} style={post.icon} onPress={() => {
-                                handleLike(postData.id)
-                            }}/> :
-                            <Icon type={'font-awesome'} name={'heart'} color={'grey'} style={post.icon} onPress={() => {
-                                handleLike(postData.id)
-                            }}/>
-                    }
-                </View>
-
+                {
+                    user.userData?.id === postData.posted_by.id &&
+                    <Icon type={'font-awesome'} name={'trash'} color={'grey'} style={post.icon} onPress={() => {
+                        handleDelete(postData.id)
+                    }}/>
+                }
+                {
+                    postData.liked_by && postData.liked_by.find((user) => user.id === user.id) ?
+                        <Icon type={'font-awesome'} name={'heart'} color={'gold'} style={post.icon} onPress={() => {
+                            handleLike(postData.id)
+                        }}/> :
+                        <Icon type={'font-awesome'} name={'heart'} color={'grey'} style={post.icon} onPress={() => {
+                            handleLike(postData.id)
+                        }}/>
+                }
             </View>
         </View>
     );
