@@ -102,6 +102,7 @@ const SignupScreen = () => {
                     style={basic.textInput}
                     passwordRules={'required: upper; required: lower; required: digit; max-consecutive: 2; minlength: 8;'}
                     placeholder="Password"
+                    secureTextEntry={true}
                     placeholderTextColor={'#FFD700'}
                     value={password}
                     onChangeText={(text) => setPassword(text)}

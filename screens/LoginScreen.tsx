@@ -30,6 +30,7 @@ const SignupScreen = () => {
             <TextInput
                 style={basic.textInput}
                 placeholder="Password"
+                secureTextEntry={true}
                 placeholderTextColor={'#FFD700'}
                 value={password}
                 onChangeText={(text) => setPassword(text)}
