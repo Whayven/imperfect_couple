@@ -36,10 +36,9 @@ const UserProvider = ({children}) => {
 
     const updateUserData = async (formData: UserData, token: string) => {
         await userService.updateUser(formData.id, formData, token).then((res) => {
-            setUserData(res);
+            setUserData({...userData, ...res});
         }).catch((error) => {
-            handleError(error)
-            return null;
+            throw error
         });
 
     }

@@ -24,9 +24,10 @@ const getUser = async (token: string): Promise<UserData> => {
 }
 
 const updateUser = async (id: number, formData: UserData, token:string): Promise<UserData> => {
-    return await strapi.put(`/users/${id}`, formData, {headers: {Authorization: `Bearer ${token}`}})
+    return await strapi.put(`/users/${id}?populate=*`, formData, {headers: {Authorization: `Bearer ${token}`}})
         .then((response) => {
             const data = response.data;
+            // console.log(`updateUser: ${JSON.stringify(data)}`)
             return {
                 id: data.id,
                 username: data.username,
@@ -36,7 +37,6 @@ const updateUser = async (id: number, formData: UserData, token:string): Promise
                 city: data.city,
                 state: data.state,
                 status: data.status,
-                profile_picture: null
             }
         })
         .catch((error) => {
