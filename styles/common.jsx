@@ -165,7 +165,14 @@ export const post = StyleSheet.create({
     postButton: {
         backgroundColor: '#FFD700',
         paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
+        borderRadius: 5,
+        marginBottom: 20,
+    },
+    commentButton: {
+        backgroundColor: '#FFD700',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
         borderRadius: 5,
         marginBottom: 20,
     },
@@ -236,12 +243,22 @@ export const form = StyleSheet.create({
         borderColor: 'gray',
         borderWidth: 1,
         marginBottom: 20,
-        paddingLeft: 10,
-        paddingTop: 10,
-        width: '80%',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        width: '70%',
         borderRadius: 10,
-        marginHorizontal: 25,
+        marginRight: 10,
         textAlignVertical: 'top'
+    },
+    postContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#1a1a1a', // Grey background
+        marginHorizontal: 20,
+        paddingHorizontal: 10,
+        paddingTop: 10,
     },
     commentContainer: {
         display: 'flex',
@@ -260,8 +277,8 @@ export const form = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 20,
         marginHorizontal: 10,
-        paddingLeft: 10,
-        paddingTop: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
         width: '70%',
         borderRadius: 10,
         textAlignVertical: 'top'

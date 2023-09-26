@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {TextInput} from "react-native";
+import {TextInput, View} from "react-native";
 
-import {basic, form} from "../styles/common";
+import {basic, form, post} from "../styles/common";
 import {Button, Icon} from "react-native-elements";
 
 const CreatePost = ({createPost}) => {
@@ -13,7 +13,7 @@ const CreatePost = ({createPost}) => {
     }
 
     return (
-        <>
+        <View style={form.postContainer}>
             <TextInput
                 style={form.bigTextInput}
                 placeholder="Share your thoughts..."
@@ -33,10 +33,10 @@ const CreatePost = ({createPost}) => {
                 }
                 title="Post"
                 onPress={handleSubmit}
-                buttonStyle={basic.button}
+                buttonStyle={post.postButton}
                 titleStyle={basic.buttonText}
             />
-        </>
+        </View>
     );
 }
 

@@ -178,7 +178,7 @@ const PostDetailScreen = ({route}) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={basic.horizontalRule}/>
-                            <CreateComment createComment={createComment} post={postDetail}/>
+                            <CreateComment createComment={createComment} postData={postDetail}/>
                             <View style={basic.horizontalRule}/>
                         </View>
                         {

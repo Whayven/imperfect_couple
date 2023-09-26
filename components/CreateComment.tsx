@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import {TextInput, View} from "react-native";
 import { Button, Icon } from 'react-native-elements';
-import { basic, form } from "../styles/common";
+import {basic, form, post} from "../styles/common";
 import {CommentData} from "../domain/commentData";
 import {PostData} from "../domain/postData";
 
 import {useUser} from "../contexts/User";
 
-const CreateComment = ({ createComment, post } : {
+const CreateComment = ({ createComment, postData } : {
     createComment: (content: CommentData) => void,
-    post: PostData
+    postData: PostData
 }) => {
     const [content, setContent] = useState('');
     const user = useUser();
@@ -18,7 +18,7 @@ const CreateComment = ({ createComment, post } : {
         const commentData:CommentData = {
             id: undefined,
             content,
-            post,
+            post: postData,
             posted_by: user.userData,
         }
         createComment(commentData);
@@ -45,7 +45,7 @@ const CreateComment = ({ createComment, post } : {
                 }
                 title="Post"
                 onPress={handleSubmit}
-                buttonStyle={basic.button}
+                buttonStyle={post.commentButton}
                 titleStyle={basic.buttonText}
             />
         </View>
