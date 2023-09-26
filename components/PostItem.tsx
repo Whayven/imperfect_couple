@@ -10,10 +10,11 @@ import {AVATAR_API, API_URL} from "../constants";
 
 import {useUser} from "../contexts/User";
 
-const PostItem = ({postData, deletePost, likePost}: {
+const PostItem = ({postData, deletePost, likePost, navigateToPost}: {
     postData: PostData,
     deletePost: (id: number) => void,
-    likePost: (id: number) => void
+    likePost: (id: number) => void,
+    navigateToPost: (post: PostData) => void
 }) => {
     const user = useUser();
     const avatar = `${API_URL}${postData.posted_by.profile_picture}` || `${AVATAR_API}/${postData.posted_by.username}`;
@@ -26,6 +27,10 @@ const PostItem = ({postData, deletePost, likePost}: {
         likePost(id);
     }
 
+    const handleNavigate = (post: PostData) => {
+        navigateToPost(post);
+    }
+
     return (
         <View style={post.postContainer}>
             <View style={post.postHeader}>
@@ -33,12 +38,16 @@ const PostItem = ({postData, deletePost, likePost}: {
                     style={post.postImage}
                     source={{uri: avatar}}
                 />
+                <View style={post.postHeaderContent}>
+                    <Text style={post.postHeaderUsername}>{postData.posted_by.username}</Text>
+                    <Text
+                        style={post.postHeaderDate}>{Moment(postData.created_at).format('MM/DD/YY')} &#8729; {Moment(postData.created_at).format('hh:mm a')} </Text>
+                </View>
             </View>
 
             <View style={post.postContent}>
                 <Text
                     style={post.postText}>{postData.content.length > 250 ? `${postData.content.substring(0, 249)}...` : postData.content}</Text>
-                <Text style={post.postDate}>{`${postData.posted_by.username} @ ${Moment(postData.created_at).format('MMM Do YYYY')}`}</Text>
             </View>
             <View style={post.postActions}>
                 {
@@ -56,6 +65,9 @@ const PostItem = ({postData, deletePost, likePost}: {
                             handleLike(postData.id)
                         }}/>
                 }
+                <Icon type={'font-awesome'} name={'comment'} color={'grey'} style={post.icon} onPress={() => {
+                    handleNavigate(postData)
+                }}/>
             </View>
         </View>
     );

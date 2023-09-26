@@ -11,6 +11,7 @@ import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";
 
 import {StyleSheet} from "react-native";
+import PostDetailScreen from "../screens/PostDetailScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -67,6 +68,13 @@ export const AuthStack = () => {
             <Drawer.Screen name="Group" component={GroupScreen}/>
             <Drawer.Screen name="Messages" component={MessagesScreen}/>
             <Drawer.Screen name="Profile" component={ProfileScreen}/>
+            <Drawer.Screen name="PostDetail" component={PostDetailScreen} options={() => {
+                return {
+                    drawerItemStyle: {display: 'none'},
+                    width: '100%',
+                    headerTitle: '',
+                }
+            }}/>
         </Drawer.Navigator>
     );
 };

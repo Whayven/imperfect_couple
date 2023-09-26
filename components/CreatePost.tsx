@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Text, TextInput, TouchableOpacity} from "react-native";
+import {TextInput} from "react-native";
 
 import {basic, form} from "../styles/common";
+import {Button, Icon} from "react-native-elements";
 
 const CreatePost = ({createPost}) => {
     const [content, setContent] = useState('');
@@ -18,10 +19,23 @@ const CreatePost = ({createPost}) => {
                 placeholder="Share your thoughts..."
                 placeholderTextColor={'#FFD700'}
                 value={content}
+                multiline={true}
                 onChangeText={(text) => setContent(text)}
             />
-            <TouchableOpacity style={basic.button} onPress={handleSubmit}><Text
-                style={basic.buttonText}>Share</Text></TouchableOpacity>
+            <Button
+                icon={
+                    <Icon
+                        name="send"
+                        size={15}
+                        color="black"
+                        style={basic.buttonIcon}
+                    />
+                }
+                title="Post"
+                onPress={handleSubmit}
+                buttonStyle={basic.button}
+                titleStyle={basic.buttonText}
+            />
         </>
     );
 }

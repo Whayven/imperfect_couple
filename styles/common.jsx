@@ -49,6 +49,22 @@ export const basic = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
     },
+    buttonIcon: {
+        marginRight: 10,
+    },
+    horizontalRule: {
+        borderBottomColor: 'gray',
+        borderBottomWidth: 1,
+        width: '99%',
+        marginBottom: 10,
+    },
+    loadingContainer: {
+        display: 'flex',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#1a1a1a', // Grey background
+    }
 });
 
 export const profile = StyleSheet.create({
@@ -80,13 +96,34 @@ export const post = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
+        width: '90%',
         backgroundColor: '#1a1a1a', // Grey background
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 10,
         marginBottom: 20,
+        marginHorizontal: 20,
         padding: 10
+    },
+    commentContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%',
+        backgroundColor: '#1a1a1a', // Grey background
+        borderColor: 'gray',
+        borderBottomWidth: 1,
+        borderRadius: 10,
+        marginBottom: 20,
+        marginHorizontal: 20,
+        padding: 10
+    },
+    scrollContainer: {
+        alignSelf: 'stretch',
+        height: '100%',
+        backgroundColor: '#1a1a1a', // Grey background
+        paddingHorizontal: 10,
     },
     postText: {
         fontSize: 20,
@@ -102,9 +139,28 @@ export const post = StyleSheet.create({
     },
     postHeader: {
         flexDirection: 'row',
+        alignItems: 'flex-end',
         width: '100%',
         paddingVertical: 10,
         paddingHorizontal: 10,
+    },
+    postHeaderContent: {
+        flexDirection: "column",
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        height: 50,
+        width: '80%',
+        marginLeft: 10,
+    },
+    postHeaderUsername: {
+        fontSize: 16,
+        color: 'grey',
+        paddingBottom: 5,
+        fontWeight: 'bold',
+    },
+    postHeaderDate: {
+        fontSize: 12,
+        color: 'grey',
     },
     postButton: {
         backgroundColor: '#FFD700',
@@ -124,6 +180,9 @@ export const post = StyleSheet.create({
         paddingBottom: 10,
         paddingHorizontal: 10,
         width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
     postDate: {
         fontSize: 12,
@@ -134,13 +193,15 @@ export const post = StyleSheet.create({
     postActions: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        width: 80,
+        width: 150,
+        paddingVertical: 10,
 
     },
     icon: {
         width: 26,
         height: 26,
     },
+
 });
 
 export const form = StyleSheet.create({
@@ -169,7 +230,7 @@ export const form = StyleSheet.create({
         alignSelf: 'stretch',
     },
     bigTextInput: {
-        height: 75,
+        height: 50,
         backgroundColor: '#1a1a1a',
         color: '#FFD700',
         borderColor: 'gray',
@@ -181,7 +242,29 @@ export const form = StyleSheet.create({
         borderRadius: 10,
         marginHorizontal: 25,
         textAlignVertical: 'top'
-
+    },
+    commentContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#1a1a1a', // Grey background
+        marginHorizontal: 20,
+        paddingHorizontal: 10,
+        paddingTop: 10,
+    },
+    commentText: {
+        backgroundColor: '#1a1a1a',
+        color: '#FFD700',
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 20,
+        marginHorizontal: 10,
+        paddingLeft: 10,
+        paddingTop: 10,
+        width: '70%',
+        borderRadius: 10,
+        textAlignVertical: 'top'
     }
 });
 

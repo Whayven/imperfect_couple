@@ -26,3 +26,9 @@ export const handleError = (error) => {
     }
     console.log(error.config);
 }
+
+export const sortArrayByDate = (array:Array<any>) : Array<any> => {
+    return array.sort((a, b) => {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    })
+}

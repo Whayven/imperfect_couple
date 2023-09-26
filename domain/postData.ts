@@ -1,4 +1,5 @@
 import {User} from "../models/User";
+import {CommentData} from "./commentData";
 
 export type PostData = {
     id: number | undefined;
@@ -6,4 +7,5 @@ export type PostData = {
     content: string;
     created_at: string | null;
     liked_by: User[] | null;
+    comments?: CommentData[] | null;
 }
