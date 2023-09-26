@@ -277,13 +277,15 @@ export const modal = StyleSheet.create({
     modalView: {
         opacity: 0.9,
         margin: 20,
-        width: '80%',
         backgroundColor: '#1a1a1a',
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 20,
-        padding: 35,
+        padding: 0,
+        paddingHorizontal: 20,
+        paddingTop: 10,
         alignItems: 'center',
+        justifyContent: 'center',
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
